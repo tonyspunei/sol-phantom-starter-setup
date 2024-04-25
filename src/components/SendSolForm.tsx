@@ -1,9 +1,6 @@
-import { FC, ReactNode, useMemo } from "react";
-import { ConnectionProvider, WalletProvider, useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+import { FC } from "react";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import * as web3 from "@solana/web3.js";
-import * as walletAdapterWallets from "@solana/wallet-adapter-wallets";
-import { getKeypairFromEnvironment } from "@solana-developers/helpers";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 const SendSolForm: FC = () => {

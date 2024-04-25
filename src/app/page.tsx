@@ -1,6 +1,5 @@
 "use client";
 import { NextPage } from "next";
-import WalletContextProvider from "@/components/WalletContextProvider";
 import { AppBar } from "@/components/AppBar";
 import SendSolForm from "@/components/SendSolForm";
 import { useEffect, useState } from "react";
@@ -23,7 +22,7 @@ const Home: NextPage = (props) => {
   }, [publicKey, connection])
 
   return (
-    <div className="">
+    <div>
       <AppBar />
       <div className="w-full flex flex-col items-center mt-40 space-y-10">
         <h2 className="text-5xl">
