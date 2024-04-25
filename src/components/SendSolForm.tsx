@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import * as web3 from "@solana/web3.js";
 require("@solana/wallet-adapter-react-ui/styles.css");
@@ -6,6 +6,7 @@ require("@solana/wallet-adapter-react-ui/styles.css");
 const SendSolForm: FC = () => {
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
+  const [signature, setSignature] = useState<string>("");
 
   const validateSolAddress = (address: string) => {
     try {
@@ -42,6 +43,7 @@ const SendSolForm: FC = () => {
       transaction.add(instruction);
       
       const signature = await sendTransaction(transaction, connection);
+      setSignature(signature);
 
       console.log(`✅ Transaction sent: https://explorer.solana.com/tx/${signature}?cluster=devnet`)
     } catch (error) {
@@ -62,6 +64,9 @@ const SendSolForm: FC = () => {
         </div>
         <button type="submit" className="py-3 px-8 bg-white text-black w-fit mx-auto text-lg">Send</button>
       </form>
+      {signature ?
+      <span>See Transaction in <a target="_blank" href={`https://explorer.solana.com/tx/${signature}?cluster=devnet`} className="underline">Solana Explorer</a></span>
+      : null}
     </>
   );
 };
